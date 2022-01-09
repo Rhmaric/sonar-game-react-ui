@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+import AppLayout from './components/organisms/Layout';
 import './App.css';
+import BoardGrid from './components/molecules/BoardGrid';
 
-function App() {
+const App = () => {
+  const handleCellClick = (row: number, column: number) => {
+    console.log(`cell (${row},${column}) has been clicked !`);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppLayout>
+        <BoardGrid
+          rows={10}
+          columns={10}
+          onCellClick={handleCellClick}
+        ></BoardGrid>
+      </AppLayout>
     </div>
   );
-}
+};
 
 export default App;
