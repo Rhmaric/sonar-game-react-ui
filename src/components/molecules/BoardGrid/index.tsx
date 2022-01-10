@@ -1,18 +1,17 @@
 import React from 'react';
+import { IMapCell } from '../../../utils/map';
 import BoardCell from '../../atoms/BoardCell';
 import BoardAxis from '../BoardAxis';
 
 export type Props = {
-  onCellClick: (row: number, column: number) => void;
+  onCellClick: (cell: IMapCell) => void;
   rows: number;
   columns: number;
+  map: IMapCell[][];
 };
 
-const BoardGrid: React.FC<Props> = ({ rows, columns, onCellClick }) => {
-  const rowsArray: number[] = Array.from(Array(rows).keys());
-  const columnsArray: number[] = Array.from(Array(columns).keys());
-
-  const styles = {
+const BoardGrid: React.FC<Props> = ({ rows, columns, map, onCellClick }) => {
+  const styles: Record<string, React.CSSProperties> = {
     gridStyles: {
       display: 'grid',
       gridTemplateAreas: `
@@ -47,14 +46,15 @@ const BoardGrid: React.FC<Props> = ({ rows, columns, onCellClick }) => {
           ></BoardAxis>
         </div>
         <div style={styles.contentStyles}>
-          {rowsArray.map(row => (
-            <div className={`row-${row}`}>
-              {columnsArray.map(column => (
+          {map.map((column, idx1) => (
+            <div className={`column-${idx1}`} key={idx1}>
+              {column.map((cell, idx2) => (
                 <div
-                  className={`cell-${row}-${column}`}
-                  onClick={() => onCellClick(row, column)}
+                  className={`cell-${idx1}-${idx2}`}
+                  key={idx2}
+                  onClick={() => onCellClick(cell)}
                 >
-                  <BoardCell isIsland={false}></BoardCell>
+                  <BoardCell cell={cell}></BoardCell>
                 </div>
               ))}
             </div>

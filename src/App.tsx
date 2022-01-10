@@ -1,22 +1,16 @@
 import React from 'react';
 import AppLayout from './components/organisms/Layout';
-import './App.css';
-import BoardGrid from './components/molecules/BoardGrid';
+import { StoreProvider } from 'easy-peasy';
+import { appStore } from './store';
+import SonarBoard from './components/organisms/SonarBoard';
 
 const App = () => {
-  const handleCellClick = (row: number, column: number) => {
-    console.log(`cell (${row},${column}) has been clicked !`);
-  };
   return (
-    <div className="App">
+    <StoreProvider store={appStore}>
       <AppLayout>
-        <BoardGrid
-          rows={10}
-          columns={10}
-          onCellClick={handleCellClick}
-        ></BoardGrid>
+        <SonarBoard></SonarBoard>
       </AppLayout>
-    </div>
+    </StoreProvider>
   );
 };
 

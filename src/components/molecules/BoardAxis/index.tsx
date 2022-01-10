@@ -14,7 +14,7 @@ const BoardAxis: React.FC<Props> = ({ length, direction, label }) => {
     label === 'letter' ? alphabet[i] : i + 1,
   );
 
-  const axisStyle = {
+  const axisStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: direction,
   };
@@ -23,7 +23,7 @@ const BoardAxis: React.FC<Props> = ({ length, direction, label }) => {
     <>
       <div className={`grid-axis ${direction} ${label}`} style={axisStyle}>
         {axisLabel.map(label => (
-          <StyledBoardCell>{label}</StyledBoardCell>
+          <StyledBoardCell key={label}>{label}</StyledBoardCell>
         ))}
       </div>
     </>

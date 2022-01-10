@@ -1,14 +1,15 @@
 import React from 'react';
+import { IMapCell } from '../../../utils/map';
 import { StyledBoardCell } from './styledBoardCell';
 
 export type Props = {
-  isIsland?: boolean;
+  cell?: IMapCell;
 };
 
-const BoardCell: React.FC<Props> = ({ isIsland = false }) => {
+const BoardCell: React.FC<Props> = ({ cell }) => {
   return (
     <>
-      <StyledBoardCell>{isIsland ? '🏝' : '🔵'}</StyledBoardCell>
+      <StyledBoardCell>{cell?.isIsland ? '🏝' : '.'}</StyledBoardCell>
     </>
   );
 };

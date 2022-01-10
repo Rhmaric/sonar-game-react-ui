@@ -7,4 +7,5 @@ export const StyledBoardCell = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  pointer: cursor;
 `;
